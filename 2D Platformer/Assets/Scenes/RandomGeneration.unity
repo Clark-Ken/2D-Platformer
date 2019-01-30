@@ -763,8 +763,8 @@ MonoBehaviour:
   rooms:
   - {fileID: 6815566673712252905, guid: c5ff23fcbe793bb4b9cba6163fece6d1, type: 3}
   - {fileID: 7354578411325093486, guid: 2efd16df8de792a4691a7c15b722bd76, type: 3}
-  - {fileID: 7416151837970732382, guid: 5f95b136c36bac646a3b2e72711f3bfd, type: 3}
-  - {fileID: 5045707023473627402, guid: 3e4f8520a0768b2499203f8b86206a55, type: 3}
+  - {fileID: 8732796482823439175, guid: ef15ed05fd82ff84586f6747f77e1a23, type: 3}
+  - {fileID: 6541859856488125323, guid: 5f14795d57c23ac44bdae9580baa6aa3, type: 3}
   room:
     serializedVersion: 2
     m_Bits: 256
