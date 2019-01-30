@@ -11,6 +11,7 @@ public class LevelGeneration : MonoBehaviour
     public LayerMask room;
 
     private int direction;
+    private int downCounter;
 
     public float moveAmount;
     private float timeBtwRoom;
@@ -20,7 +21,7 @@ public class LevelGeneration : MonoBehaviour
     public float maxX;
     public float minY;
 
-    private bool stopGeneration = false;
+    public bool stopGeneration = false;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,8 @@ public class LevelGeneration : MonoBehaviour
         {
             if (transform.position.x < maxX)
             {
+                downCounter = 0;
+
                 Vector2 newPosition = new Vector2(transform.position.x + moveAmount, transform.position.y);
                 transform.position = newPosition;
 
@@ -83,6 +86,8 @@ public class LevelGeneration : MonoBehaviour
         {
             if (transform.position.x > minX)
             {
+                downCounter = 0;
+
                 Vector2 newPosition = new Vector2(transform.position.x - moveAmount, transform.position.y);
                 transform.position = newPosition;
 
@@ -98,6 +103,8 @@ public class LevelGeneration : MonoBehaviour
         }
         else if (direction == 7)   //Move down
         {
+            downCounter++;
+
             if (transform.position.y > minY)
             {
                 //Invisible circle only detects rooms
@@ -106,16 +113,24 @@ public class LevelGeneration : MonoBehaviour
                 //If the room doesn't have a bottom opening
                 if (roomDetection.GetComponent<RoomType>().type != 1 && roomDetection.GetComponent<RoomType>().type != 3)
                 {
-                    roomDetection.GetComponent<RoomType>().RoomDestruction();
-
-                    int rndBottomRoom = Random.Range(1, 4);
-
-                    if (rndBottomRoom == 2)
+                    if (downCounter >= 2)
                     {
-                        rndBottomRoom = 1;
+                        roomDetection.GetComponent<RoomType>().RoomDestruction();
+                        Instantiate(rooms[3], transform.position, Quaternion.identity);
                     }
+                    else
+                    {
+                        roomDetection.GetComponent<RoomType>().RoomDestruction();
 
-                    Instantiate(rooms[rndBottomRoom], transform.position, Quaternion.identity);
+                        int rndBottomRoom = Random.Range(1, 4);
+
+                        if (rndBottomRoom == 2)
+                        {
+                            rndBottomRoom = 1;
+                        }
+
+                        Instantiate(rooms[rndBottomRoom], transform.position, Quaternion.identity);
+                    }
                 }
 
                 Vector2 newPosition = new Vector2(transform.position.x, transform.position.y - moveAmount);
