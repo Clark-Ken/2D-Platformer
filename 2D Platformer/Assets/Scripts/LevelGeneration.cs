@@ -7,6 +7,8 @@ public class LevelGeneration : MonoBehaviour
     public Transform[] startingPositions;
 
     public GameObject[] rooms;  //index 0 - LR, index 1 - LRB, index 2 - LRT, index 3 - LRTB
+    public GameObject start;
+    public GameObject finish;
 
     public LayerMask room;
 
@@ -30,6 +32,7 @@ public class LevelGeneration : MonoBehaviour
         transform.position = startingPositions[rndStartingPos].position;
 
         Instantiate(rooms[0], transform.position, Quaternion.identity);
+        Instantiate(start, transform.position, Quaternion.identity);
 
         direction = Random.Range(1, 8);
     }
@@ -144,6 +147,7 @@ public class LevelGeneration : MonoBehaviour
             else    //Stop generation
             {
                 stopGeneration = true;
+                Instantiate(finish, transform.position, Quaternion.identity);
             }
         }        
     }

@@ -7,6 +7,10 @@ public class FillInEmptySpaces : MonoBehaviour
     public LayerMask emptyRooms;
     public LevelGeneration levelGeneration;
 
+    public GameObject[] closedRooms;
+
+    public int notClosedChanse;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +24,24 @@ public class FillInEmptySpaces : MonoBehaviour
 
         if (roomDetection == null && levelGeneration.stopGeneration == true)
         {
-            //Spawn in random room
-            int rndRoom = Random.Range(0, levelGeneration.rooms.Length);
-            Instantiate(levelGeneration.rooms[rndRoom], transform.position, Quaternion.identity);
-            //Rooms won't spawn endlessly
-            Destroy(gameObject);
+            int rndNumb = Random.Range(0, notClosedChanse + 3);
+
+            if (rndNumb >= notClosedChanse)
+            {
+                //Spawn in random room
+                int rndRoom = Random.Range(0, levelGeneration.rooms.Length);
+                Instantiate(levelGeneration.rooms[rndRoom], transform.position, Quaternion.identity);
+                //Rooms won't spawn endlessly
+                Destroy(gameObject);
+            }
+            else
+            {
+                int rndCRoom = Random.Range(0, closedRooms.Length);
+                Instantiate(closedRooms[rndCRoom], transform.position, Quaternion.identity);
+                //Rooms won't spawn endlessly
+                Destroy(gameObject);
+            }
+            
         }
     }
 }
