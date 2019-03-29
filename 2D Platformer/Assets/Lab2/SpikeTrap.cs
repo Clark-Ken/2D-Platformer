@@ -32,14 +32,4 @@ public class SpikeTrap : MonoBehaviour
             inSpikeZone = true;
         }
     }
-
-    IEnumerator ActivateSpikes()
-    {
-        while (inSpikeZone)
-        {
-            return null;
-        }
-
-        return null;
-    }
 }
