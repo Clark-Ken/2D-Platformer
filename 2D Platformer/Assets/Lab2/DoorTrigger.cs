@@ -23,7 +23,7 @@ public class DoorTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Tigger enter");
+            Debug.Log("Tigger enter ok yes");
             doors.SetBool("openDoor", true);
         }
         
