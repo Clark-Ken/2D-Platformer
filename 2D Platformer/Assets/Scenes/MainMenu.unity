@@ -1006,7 +1006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 277958858}
   optionsMenu: {fileID: 459599567}
-  gameScene: 
+  gameScene: RandomGeneration
 --- !u!4 &920143456
 Transform:
   m_ObjectHideFlags: 0

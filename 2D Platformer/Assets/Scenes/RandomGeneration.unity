@@ -843,7 +843,7 @@ MonoBehaviour:
   - {fileID: 7354578411325093486, guid: 2efd16df8de792a4691a7c15b722bd76, type: 3}
   - {fileID: 8732796482823439175, guid: ef15ed05fd82ff84586f6747f77e1a23, type: 3}
   - {fileID: 6541859856488125323, guid: 5f14795d57c23ac44bdae9580baa6aa3, type: 3}
-  start: {fileID: 908800594153029766, guid: 38ae34cc95a37f045b68e5155bfef365, type: 3}
+  start: {fileID: 3390568311006171510, guid: a1d99b8eb112e124bb4bcea203cc20de, type: 3}
   finish: {fileID: 908800594153029766, guid: 701d04da2f4385f44b85b2fe170f734f, type: 3}
   room:
     serializedVersion: 2
