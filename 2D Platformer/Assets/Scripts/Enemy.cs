@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform groundDetection;
+    public Transform wallDetection;
 
     private Animator enemyAnimator;
 
@@ -25,9 +25,18 @@ public class Enemy : MonoBehaviour
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, rayDistance);
+        RaycastHit2D raycastInfo;
 
-        if (!groundInfo.collider && enemyAnimator.GetBool("isInEnemyZone") == false)
+        if (movingDirection)
+        {
+            raycastInfo = Physics2D.Raycast(wallDetection.position, Vector2.right, rayDistance);
+        }
+        else
+        {
+            raycastInfo = Physics2D.Raycast(wallDetection.position, Vector2.left, rayDistance);
+        }
+
+        if (raycastInfo.collider && enemyAnimator.GetBool("isInEnemyZone") == false)
         {
             if (movingDirection)
             {
