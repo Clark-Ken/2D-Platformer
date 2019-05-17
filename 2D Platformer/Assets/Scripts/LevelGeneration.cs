@@ -13,6 +13,8 @@ public class LevelGeneration : MonoBehaviour
 
     public LayerMask room;
 
+    public GameObject gameOverPanel;
+
     private int direction;
     private int downCounter;
 
@@ -32,6 +34,8 @@ public class LevelGeneration : MonoBehaviour
         int rndStartingPos = Random.Range(0, startingPositions.Length);
         transform.position = startingPositions[rndStartingPos].position;
         startPos = transform.position;
+
+        gameOverPanel.SetActive(false);
 
         Instantiate(rooms[0], transform.position, Quaternion.identity);
 
@@ -148,13 +152,17 @@ public class LevelGeneration : MonoBehaviour
             else    //Stop generation
             {
                 stopGeneration = true;
-
-                //Instantiate(player, startPos, Quaternion.identity);
-
                 player.transform.position = startPos;
-
                 Instantiate(finish, transform.position, Quaternion.identity);
             }
         }        
+    }
+
+    public void RespawnPlayer()
+    {
+        if (stopGeneration == true)
+        {
+            player.transform.position = startPos;
+        }
     }
 }
