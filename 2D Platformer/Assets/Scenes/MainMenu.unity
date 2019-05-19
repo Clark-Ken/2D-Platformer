@@ -2203,8 +2203,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Game made by: Vadimas Ko\u017Euchovskis, IFF-6/9\n\nSprites:\nSongs:\nSpecial
-    thanks: Andrius Paulauskas"
+  m_Text: "Game made by: Vadimas Ko\u017Euchovskis, IFF-6/9\n\nSprites: Kenney.nl\nSongs:
+    soundscrate.com\nSpecial thanks: Andrius Paulauskas, VRLab"
 --- !u!222 &718819755
 CanvasRenderer:
   m_ObjectHideFlags: 0

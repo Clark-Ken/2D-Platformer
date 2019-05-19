@@ -75,5 +75,13 @@ public class PlayerPlatformerController : PhysicsObject
             lvlGen.NextLevel();
             numberOfLivesText.text = "LIVES: " + PlayerPrefs.GetInt("Lives");
         }
+
+        if (collision.gameObject.tag == "Life")
+        {
+            numberOfLives++;
+            numberOfLivesText.text = "LIVES: " + numberOfLives;
+            PlayerPrefs.SetInt("Lives", numberOfLives);
+            Destroy(collision.gameObject);
+        }
     }
 }

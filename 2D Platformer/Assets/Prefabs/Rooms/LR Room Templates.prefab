@@ -46,3 +46,5 @@ MonoBehaviour:
   tiles:
   - {fileID: 736250522459162215, guid: 3a4b9a61d2b4d5b43af7d564fd66a507, type: 3}
   - {fileID: 736250522459162215, guid: fb72225f264ed294b96141505fc073c4, type: 3}
+  - {fileID: 736250522459162215, guid: a67aa8d7abf8e08419a76ff3707eaa77, type: 3}
+  - {fileID: 736250522459162215, guid: 6adf323d329b8644c865a876d35560ce, type: 3}
