@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class OptionsManager : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class OptionsManager : MonoBehaviour
         {
             resolutionDropdown.options.Add(new Dropdown.OptionData(resolution.ToString()));
         }
+
+        LoadSettings();
     }
 
     public void OnFullscreenToggle()
@@ -53,6 +56,7 @@ public class OptionsManager : MonoBehaviour
     public void OnResolutionChange()
     {
         Screen.SetResolution(resolutions[resolutionDropdown.value].width, resolutions[resolutionDropdown.value].height, Screen.fullScreen);
+        gameSettings.resolutionIndex = resolutionDropdown.value;
     }
 
     public void OnGameMusicVolumeChange()
@@ -67,11 +71,20 @@ public class OptionsManager : MonoBehaviour
 
     public void SaveSettings()
     {
-
+        string jsonData = JsonUtility.ToJson(gameSettings, true);
+        File.WriteAllText(Application.persistentDataPath + "/2dPlatformerOptions.json", jsonData);
     }
 
     public void LoadSettings()
     {
+        gameSettings = JsonUtility.FromJson<GameSettings>(File.ReadAllText(Application.persistentDataPath + "/2dPlatformerOptions.json"));
 
+        fullscreenToggle.isOn = gameSettings.fullscreen;
+        resolutionDropdown.value = gameSettings.resolutionIndex;
+        gameMusicVolumeSlider.value = gameSettings.gameMusicVolume;
+        mainMenuMusicVolumeSlider.value = gameSettings.mainMenuMusicVolume;
+
+        resolutionDropdown.RefreshShownValue();
+        Screen.fullScreen = gameSettings.fullscreen;
     }
 }

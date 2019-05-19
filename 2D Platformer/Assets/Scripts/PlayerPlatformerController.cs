@@ -20,7 +20,7 @@ public class PlayerPlatformerController : PhysicsObject
     // Start is called before the first frame update
     void Start()
     {
-        numberOfLivesText.text = "LIVES: " + numberOfLives;
+        numberOfLivesText.text = "LIVES: " + PlayerPrefs.GetInt("Lives");
     }
 
     protected override void ComputeVelocity()
@@ -53,6 +53,7 @@ public class PlayerPlatformerController : PhysicsObject
                 numberOfLives--;
                 numberOfLivesText.text = "LIVES: " + numberOfLives;
                 lvlGen.RespawnPlayer();
+                PlayerPrefs.SetInt("Lives", numberOfLives);
             }
             else if (numberOfLives == 0)
             {
@@ -70,6 +71,7 @@ public class PlayerPlatformerController : PhysicsObject
         {
             SceneManager.LoadScene("RandomGeneration");
             lvlGen.NextLevel();
+            numberOfLivesText.text = "LIVES: " + PlayerPrefs.GetInt("Lives");
         }
     }
 }

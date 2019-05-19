@@ -9,6 +9,8 @@ public class MainMenuManager : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject optionsMenu;
+    public GameObject scoresMenu;
+    public GameObject aboutMenu;
 
     public Text highscoreText;
 
@@ -19,6 +21,7 @@ public class MainMenuManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Score", 0);
         highscoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("HighScore");
+        PlayerPrefs.SetInt("Lives", 3);
     }
 
     // Update is called once per frame
@@ -46,12 +49,26 @@ public class MainMenuManager : MonoBehaviour
 
     public void OpenScores()
     {
+        mainMenu.SetActive(false);
+        scoresMenu.SetActive(true);
+    }
 
+    public void CloseScores()
+    {
+        mainMenu.SetActive(true);
+        scoresMenu.SetActive(false);
     }
 
     public void OpenAbout()
     {
+        mainMenu.SetActive(false);
+        aboutMenu.SetActive(true);
+    }
 
+    public void CloseAbout()
+    {
+        mainMenu.SetActive(true);
+        aboutMenu.SetActive(false);
     }
 
     public void QuitGame()
