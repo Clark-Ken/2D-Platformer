@@ -13,6 +13,7 @@ public class PlayerPlatformerController : PhysicsObject
     public Text numberOfLivesText;
 
     public int numberOfLives;
+    //private int highScore;
 
     public LevelGeneration lvlGen;
 
@@ -58,6 +59,10 @@ public class PlayerPlatformerController : PhysicsObject
                 numberOfLivesText.text = "LIVES: " + numberOfLives;
                 Debug.Log("Game Over");
                 gameOverPanel.SetActive(true);
+                if (PlayerPrefs.GetInt("HighScore") < lvlGen.score)
+                {
+                    PlayerPrefs.SetInt("HighScore", lvlGen.score);
+                }
             }
         }
 

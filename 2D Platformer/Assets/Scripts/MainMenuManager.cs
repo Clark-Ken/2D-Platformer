@@ -10,12 +10,15 @@ public class MainMenuManager : MonoBehaviour
     public GameObject mainMenu;
     public GameObject optionsMenu;
 
+    public Text highscoreText;
+
     public string gameScene;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerPrefs.SetInt("Score", 0);
+        highscoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("HighScore");
     }
 
     // Update is called once per frame

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelGeneration : MonoBehaviour
@@ -43,6 +44,8 @@ public class LevelGeneration : MonoBehaviour
         Instantiate(rooms[0], transform.position, Quaternion.identity);
 
         direction = Random.Range(1, 8);
+
+        score = PlayerPrefs.GetInt("Score");
         scoreText.text = "SCORE: " + score;
     }
 
@@ -174,5 +177,10 @@ public class LevelGeneration : MonoBehaviour
     {
         score = score + 100;
         PlayerPrefs.SetInt("Score", score);
+    }
+
+    public void ContinueToSaveScore()
+    {
+        SceneManager.LoadScene(0);
     }
 }
