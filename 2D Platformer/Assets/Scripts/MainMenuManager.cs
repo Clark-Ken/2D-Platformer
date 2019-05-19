@@ -20,7 +20,7 @@ public class MainMenuManager : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetInt("Score", 0);
-        highscoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("HighScore");
+        highscoreText.text = "1 ST: " + PlayerPrefs.GetInt("HighScore");
         PlayerPrefs.SetInt("Lives", 3);
     }
 

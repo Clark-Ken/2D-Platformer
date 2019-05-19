@@ -185,8 +185,9 @@ public class LevelGeneration : MonoBehaviour
 
     public void ContinueToSaveScore()
     {
-        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
         Destroy(audioManager);
+        SceneManager.LoadScene(0);
     }
 
     public void PauseGame()
@@ -209,6 +210,7 @@ public class LevelGeneration : MonoBehaviour
     public void QuitGame()
     {
         Time.timeScale = 1;
+        Destroy(audioManager);
         SceneManager.LoadScene(0);
     }
 

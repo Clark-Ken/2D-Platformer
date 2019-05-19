@@ -64,6 +64,8 @@ public class PlayerPlatformerController : PhysicsObject
                 {
                     PlayerPrefs.SetInt("HighScore", lvlGen.score);
                 }
+                Time.timeScale = 0;
+                //PlayerPrefs.SetInt("HighScore", lvlGen.score);
             }
         }
 
