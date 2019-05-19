@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerPlatformerController : PhysicsObject
@@ -58,6 +59,11 @@ public class PlayerPlatformerController : PhysicsObject
                 Debug.Log("Game Over");
                 gameOverPanel.SetActive(true);
             }
+        }
+
+        if (collision.gameObject.tag == "Finish")
+        {
+            SceneManager.LoadScene("RandomGeneration");
         }
     }
 }
