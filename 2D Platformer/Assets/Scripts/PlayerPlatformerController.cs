@@ -64,6 +64,7 @@ public class PlayerPlatformerController : PhysicsObject
         if (collision.gameObject.tag == "Finish")
         {
             SceneManager.LoadScene("RandomGeneration");
+            lvlGen.NextLevel();
         }
     }
 }

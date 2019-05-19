@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelGeneration : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class LevelGeneration : MonoBehaviour
     public GameObject[] rooms;  //index 0 - LR, index 1 - LRB, index 2 - LRT, index 3 - LRTB
     public GameObject player;
     public GameObject finish;
+    public Text scoreText;
 
     public LayerMask room;
 
@@ -17,6 +19,7 @@ public class LevelGeneration : MonoBehaviour
 
     private int direction;
     private int downCounter;
+    public int score;
 
     public float moveAmount;
     private float timeBtwRoom;
@@ -40,6 +43,7 @@ public class LevelGeneration : MonoBehaviour
         Instantiate(rooms[0], transform.position, Quaternion.identity);
 
         direction = Random.Range(1, 8);
+        scoreText.text = "SCORE: " + score;
     }
 
     // Update is called once per frame
@@ -164,5 +168,11 @@ public class LevelGeneration : MonoBehaviour
         {
             player.transform.position = startPos;
         }
+    }
+
+    public void NextLevel()
+    {
+        score = score + 100;
+        PlayerPrefs.SetInt("Score", score);
     }
 }
