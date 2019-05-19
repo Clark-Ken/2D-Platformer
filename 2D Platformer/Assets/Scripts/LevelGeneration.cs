@@ -17,6 +17,8 @@ public class LevelGeneration : MonoBehaviour
     public LayerMask room;
 
     public GameObject gameOverPanel;
+    public GameObject pausePanel;
+    public GameObject confirmationPanel;
 
     private int direction;
     private int downCounter;
@@ -31,6 +33,8 @@ public class LevelGeneration : MonoBehaviour
     public float minY;
 
     public bool stopGeneration = false;
+
+    public GameObject audioManager;
 
     // Start is called before the first frame update
     void Start()
@@ -182,5 +186,34 @@ public class LevelGeneration : MonoBehaviour
     public void ContinueToSaveScore()
     {
         SceneManager.LoadScene(0);
+        Destroy(audioManager);
+    }
+
+    public void PauseGame()
+    {
+        pausePanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void ClosePausePanel()
+    {
+        Time.timeScale = 1;
+        pausePanel.SetActive(false);
+    }
+
+    public void OpenConfirmationPanel()
+    {
+        confirmationPanel.SetActive(true);
+    }
+
+    public void QuitGame()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
+
+    public void CloseConfirmationPanel()
+    {
+        confirmationPanel.SetActive(false);
     }
 }

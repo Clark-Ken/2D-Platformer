@@ -8,7 +8,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource;
     public static AudioManager instance = null;
 
-    public Slider musicVolumeSlider;
+    //public Slider musicVolumeSlider;
+
+    public GameSettings gameSettings;
 
     private bool volumeChanged = false;
 
@@ -25,29 +27,9 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //SetMusicVolume();
+
         DontDestroyOnLoad(gameObject);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        pastVolume = musicVolumeSlider.value;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (pastVolume > musicVolumeSlider.value || pastVolume < musicVolumeSlider.value)
-        {
-            volumeChanged = true;
-            pastVolume = musicVolumeSlider.value;
-        }
-
-        if (volumeChanged)
-        {
-            SetMusicVolume();
-            volumeChanged = false;
-        }
     }
 
     public void PlaySingle(AudioClip clip)
@@ -57,6 +39,6 @@ public class AudioManager : MonoBehaviour
 
     public void SetMusicVolume()
     {
-        musicSource.volume = musicVolumeSlider.value;
+        musicSource.volume = gameSettings.gameMusicVolume;
     }
 }
