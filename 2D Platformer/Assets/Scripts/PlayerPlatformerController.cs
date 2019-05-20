@@ -71,9 +71,15 @@ public class PlayerPlatformerController : PhysicsObject
 
         if (collision.gameObject.tag == "Finish")
         {
-            SceneManager.LoadScene("RandomGeneration");
-            lvlGen.NextLevel();
-            numberOfLivesText.text = "LIVES: " + PlayerPrefs.GetInt("Lives");
+            lvlGen.FadeIn();
+            if (lvlGen.fadeDone)
+            {
+                lvlGen.fadeImage.gameObject.SetActive(true);
+                SceneManager.LoadScene("RandomGeneration");
+                lvlGen.NextLevel();
+                lvlGen.fadeImage.SetBool("newLvl", true);
+                numberOfLivesText.text = "LIVES: " + PlayerPrefs.GetInt("Lives");
+            }
         }
 
         if (collision.gameObject.tag == "Life")

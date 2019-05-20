@@ -12,7 +12,11 @@ public class LevelGeneration : MonoBehaviour
     public GameObject[] rooms;  //index 0 - LR, index 1 - LRB, index 2 - LRT, index 3 - LRTB
     public GameObject player;
     public GameObject finish;
+    public GameObject startingRoom;
+
     public Text scoreText;
+
+    public Animator fadeImage;
 
     public LayerMask room;
 
@@ -27,12 +31,16 @@ public class LevelGeneration : MonoBehaviour
     public float moveAmount;
     private float timeBtwRoom;
     public float startTimeBtwRoom;
+    public float fade = 1;
+    public float diference;
     //Boarder
     public float minX;
     public float maxX;
     public float minY;
 
     public bool stopGeneration = false;
+    public bool fadeDone = false;
+    public bool doOnce = false;
 
     public GameObject audioManager;
 
@@ -45,7 +53,7 @@ public class LevelGeneration : MonoBehaviour
 
         gameOverPanel.SetActive(false);
 
-        Instantiate(rooms[0], transform.position, Quaternion.identity);
+        Instantiate(startingRoom, transform.position, Quaternion.identity);
 
         direction = Random.Range(1, 8);
 
@@ -65,7 +73,21 @@ public class LevelGeneration : MonoBehaviour
         {
             timeBtwRoom -= Time.deltaTime; 
         }
+
+        if (stopGeneration)
+        {
+            //fadeImage.SetBool("fadeOut", false);
+        }
     }
+
+    //private void FixedUpdate()
+    //{
+    //    if (stopGeneration && !doOnce)
+    //    {
+    //        fadeImage.SetBool("fadeOut", true);
+    //        doOnce = true;
+    //    }
+    //}
 
     void MoveRoom()
     {
@@ -163,6 +185,9 @@ public class LevelGeneration : MonoBehaviour
             else    //Stop generation
             {
                 stopGeneration = true;
+                fadeImage.SetBool("fadeOut", true);
+                fadeImage.SetBool("newLvl", false);
+                fadeImage.gameObject.SetActive(false);
                 player.transform.position = startPos;
                 Instantiate(finish, transform.position, Quaternion.identity);
             }
@@ -181,6 +206,12 @@ public class LevelGeneration : MonoBehaviour
     {
         score = score + 100;
         PlayerPrefs.SetInt("Score", score);
+    }
+
+    public void FadeIn()
+    {
+        fadeImage.SetBool("fadeIn", true);
+        fadeDone = true;
     }
 
     public void ContinueToSaveScore()
