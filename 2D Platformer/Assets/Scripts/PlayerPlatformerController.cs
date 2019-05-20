@@ -50,7 +50,9 @@ public class PlayerPlatformerController : PhysicsObject
         {
             if (numberOfLives > 0)
             {
-                numberOfLives--;
+                int damage = Random.Range(1, numberOfLives+1);
+                Debug.Log(damage);
+                numberOfLives = numberOfLives - damage;
                 numberOfLivesText.text = "LIVES: " + numberOfLives;
                 lvlGen.RespawnPlayer();
                 PlayerPrefs.SetInt("Lives", numberOfLives);
